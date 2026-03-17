@@ -1,0 +1,28 @@
+name: Build Windows EXE
+
+on:
+  push:
+    branches: [ "master", "main" ] # Triggers the build whenever you edit the code
+  workflow_dispatch: # Allows you to trigger the build manually
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Setup Rust
+      uses: dtolnay/rust-toolchain@stable
+      with:
+        toolchain: stable
+
+    - name: Build Release
+      run: cargo build --release
+
+    - name: Upload EXE
+      uses: actions/upload-artifact@v4
+      with:
+        name: Obamify-Custom-Build
+        path: target/release/obamify.exe
