@@ -186,8 +186,8 @@ pub fn drawing_process_genetic(
 
         for _ in 0..swaps_per_generation {
             let apos = rng.gen_range(0..pixels.len() as u64) as usize;
-            let ax = apos as u16 % settings.sidelen as u16;
-            let ay = apos as u16 / settings.sidelen as u16;
+            let ax = (apos as u32 % settings.sidelen) as u16;
+            let ay = (apos as u32 / settings.sidelen) as u16;
 
             //let stroke_id = pixel_data[apos].stroke_id as usize;
             let max_dist_a = max_dist(frame_count.saturating_sub(pixel_data[apos].last_edited));
