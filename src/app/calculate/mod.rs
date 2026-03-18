@@ -390,8 +390,8 @@ pub fn process_genetic<S: ProgressSink>(
         let mut swaps_made = 0;
         for _ in 0..swaps_per_generation {
             let apos = rng.gen_range(0..pixels.len() as u32) as usize;
-            let ax = apos as u16 % settings.sidelen as u16;
-            let ay = apos as u16 / settings.sidelen as u16;
+            let ax = (apos as u32 % settings.sidelen) as u16;
+            let ay = (apos as u32 / settings.sidelen) as u16;
             let bx = (ax as i16 + rng.gen_range(-(max_dist as i16)..(max_dist as i16 + 1)))
                 .clamp(0, settings.sidelen as i16 - 1) as u16;
             let by = (ay as i16 + rng.gen_range(-(max_dist as i16)..(max_dist as i16 + 1)))
