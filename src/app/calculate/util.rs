@@ -177,21 +177,6 @@ impl GenerationSettings {
         }
     }
 
-    // Dynamically stretch the target image to match your custom slider resolution
-let target_img = image::imageops::resize(
-    &target_img, 
-    settings.sidelen, 
-    settings.sidelen, 
-    image::imageops::FilterType::Triangle
-);
-
-// Dynamically stretch the weight map to match
-let weights_img = image::imageops::resize(
-    &weights_img, 
-    settings.sidelen, 
-    settings.sidelen, 
-    image::imageops::FilterType::Triangle
-);
 
     pub(crate) fn set_raw_target(&mut self, img: SourceImg) {
         let (w, h) = img.dimensions();
